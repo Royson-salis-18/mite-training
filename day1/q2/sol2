@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+
+
+void getCustomerDetails(char name[], int *id, int *units) {
+    printf("Enter customer name: ");
+    fgets(name, 100, stdin);
+    name[strcspn(name, "\n")] = 0;
+
+    printf("Enter customer ID: ");
+    scanf("%d", id);
+
+    printf("Enter units consumed: ");
+    scanf("%d", units);
+    getchar(); // Consume newline character
+}
+
+
+float calculateBill(int units) {
+    float bill = 100.0f; 
+
+    if (units <= 100) {
+        bill += units * 5.0f;
+    } else if (units <= 300) {
+        bill += 100 * 5.0f + (units - 100) * 7.0f;
+    } else {
+        bill += 100 * 5.0f + 200 * 7.0f + (units - 300) * 10.0f;
+    }
+
+    if (bill > 1000.0f) {
+        bill += bill * 0.05f; // Add 5% extra charge
+    }
+
+    return bill;
+}
+
+void displayBill(char name[], int id, int units, float bill) {
+    printf("\nCustomer Bill:\n");
+    printf("Name: %s\n", name);
+    printf("Customer ID: %d\n", id);
+    printf("Units Consumed: %d\n", units);
+    printf("Total Bill: ₹%.2f\n", bill);
+    printf("\n");
+}
+
+int main() {
+    char customer_name[100];
+    int customer_id, units_consumed;
+    float total_bill;
+
+    getCustomerDetails(customer_name, &customer_id, &units_consumed);
+    total_bill = calculateBill(units_consumed);
+    displayBill(customer_name, customer_id, units_consumed, total_bill);
+
+    return 0;
+}
