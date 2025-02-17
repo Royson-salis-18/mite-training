@@ -2,7 +2,7 @@
 
 void getCustomerDetails(char name[], int *id, int *units) {
     printf("Enter customer name: ");
-    scanf(" %[^\n]", name); 
+    scanf(" %s", name); 
 
     printf("Enter customer ID: ");
     scanf("%d", id);
