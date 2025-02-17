@@ -1,23 +1,18 @@
 #include <stdio.h>
-#include <string.h>
-
 
 void getCustomerDetails(char name[], int *id, int *units) {
     printf("Enter customer name: ");
-    fgets(name, 100, stdin);
-    name[strcspn(name, "\n")] = 0;
+    scanf(" %[^\n]", name); 
 
     printf("Enter customer ID: ");
     scanf("%d", id);
 
     printf("Enter units consumed: ");
     scanf("%d", units);
-    getchar(); // Consume newline character
 }
 
-
 float calculateBill(int units) {
-    float bill = 100.0f; 
+    float bill = 100.0f;
 
     if (units <= 100) {
         bill += units * 5.0f;
@@ -28,7 +23,7 @@ float calculateBill(int units) {
     }
 
     if (bill > 1000.0f) {
-        bill += bill * 0.05f; // Add 5% extra charge
+        bill += bill * 0.05f;
     }
 
     return bill;
