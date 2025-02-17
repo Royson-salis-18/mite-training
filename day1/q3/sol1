@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+
+
+float calculateTollTax(char vehicleType[], int distance) {
+    float baseCharge = 0.0f;
+    float discount = 0.0f;
+    float totalTax = 0.0f;
+
+    if (strcmp(vehicleType, "Car") == 0) {
+        baseCharge = distance * 5.0f;
+    } else if (strcmp(vehicleType, "Truck") == 0) {
+        baseCharge = distance * 10.0f;
+        if (distance > 500) {
+            discount = baseCharge * 0.10f;
+        }
+    } else if (strcmp(vehicleType, "Bus") == 0) {
+        baseCharge = distance * 8.0f;
+        if (distance > 300) {
+            discount = baseCharge * 0.05f;
+        }
+    } else {
+        printf("Invalid vehicle type.\n");
+        return -1.0f; // Indicate an error
+    }
+
+    totalTax = baseCharge - discount;
+    return totalTax;
+}
+
+int main() {
+    char vehicleType[20];
+    int distance;
+    float totalTax, baseCharge, discount;
+
+    printf("Enter Vehicle Type (Car/Truck/Bus): ");
+    scanf("%s", vehicleType);
+
+    printf("Enter Distance Traveled: ");
+    scanf("%d", &distance);
+
+    totalTax = calculateTollTax(vehicleType, distance);
+
+    if (totalTax >= 0) {
+        if (strcmp(vehicleType, "Car") == 0){
+            baseCharge = distance * 5.0f;
+        } else if (strcmp(vehicleType, "Truck") == 0){
+            baseCharge = distance * 10.0f;
+            if(distance > 500){
+                discount = baseCharge * 0.10f;
+            }
+        } else if (strcmp(vehicleType, "Bus") == 0){
+            baseCharge = distance * 8.0f;
+            if(distance > 300){
+                discount = baseCharge * 0.05f;
+            }
+        }
+
+        printf("Vehicle Type: %s\n", vehicleType);
+        printf("Distance Traveled: %d km\n", distance);
+        printf("Base Charge: ₹%.0f\n", baseCharge);
+        printf("Discount: ₹%.0f\n", discount);
+        printf("Total Toll Tax: ₹%.0f\n", totalTax);
+    }
+
+    return 0;
+}
