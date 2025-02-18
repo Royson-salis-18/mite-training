@@ -1,0 +1,40 @@
+//loan eligibility function
+#include<stdio.h>
+
+void readDetails(float* p_salary, int* p_score, int* p_experience){
+    printf("enter salary:");
+    scanf("%f",p_salary);
+
+    printf("enter credit score:");
+    scanf("%f",p_score);
+
+    printf("enter experience:");
+    scanf("%f",p_experience);
+
+}
+int isEligible(float salary, int score, int experience){
+    return((salary >= 30000)&&(score>=750)&&(experience>=2));
+}
+
+void doTask(){
+    float salary;
+    int score;
+    int experience;
+    readDetails(&salary,&score, &experience);
+    if(isEligible(salary,score,experience)){
+        printf("Loan Approved");
+    }
+    else{
+        printf("Loan Rejected");
+    }
+    return 0;
+}
+int main(){
+    
+    do{
+        doTask();
+        printf("Are you sure to continue?(1-continue, 0-exit)");
+        scanf("%d",choice);
+    }while(choice==1);
+    return 0;
+}
