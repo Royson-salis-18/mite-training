@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+float convertTemperature(float temperature, int choice) {
+    float convertedTemperature;
+    
+    switch (choice) {
+        case 1: 
+            convertedTemperature = (temperature * 9.0/5.0) + 32.0;
+            break;
+        case 2: 
+            convertedTemperature = (temperature - 32.0) * 5.0/9.0;
+            break;
+        case 3: 
+            convertedTemperature = temperature + 273.15;
+            break;
+        default:
+            printf("Invalid choice!\n");
+            convertedTemperature = -1.0; 
+    }
+    
+    return convertedTemperature;
+}
+
+int main() {
+    float inputTemperature, resultTemperature;
+    int conversionChoice;
+    
+    printf("Enter Temperature: ");
+    scanf("%f", &inputTemperature);
+    
+    printf("Choose Conversion:\n");
+    printf("1. Celsius to Fahrenheit\n");
+    printf("2. Fahrenheit to Celsius\n");
+    printf("3. Celsius to Kelvin\n");
+    printf("Enter Choice: ");
+    scanf("%d", &conversionChoice);
+    
+    resultTemperature = convertTemperature(inputTemperature, conversionChoice);
+    
+    if (resultTemperature != -1.0) { 
+        switch (conversionChoice) {
+            case 1:
+                printf("Temperature in Fahrenheit: %.2f\n", resultTemperature);
+                break;
+            case 2:
+                printf("Temperature in Celsius: %.2f\n", resultTemperature);
+                break;
+            case 3:
+                printf("Temperature in Kelvin: %.2f\n", resultTemperature);
+                break;
+        }
+    }
+    
+    return 0;
+}
