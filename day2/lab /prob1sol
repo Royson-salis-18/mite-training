@@ -1,34 +1,33 @@
 #include <stdio.h>
-#include<string.h>
 #include <ctype.h>
-float calculate(char w, int d) {
-    int r;
-    if(w == 'G') r = 1000;
-    else if(w == 'S') r = 2000;
-    else if(w == 'P') r = 5000;
-    else r = 0;
-    return d * r;
+float calculate(char ward, int discount) {
+    int rate;
+    if(ward == 'G') rate = 1000;
+    else if(ward == 'S') rate = 2000;
+    else if(ward == 'P') rate = 5000;
+    else rate = 0;
+    return discount * rate;
 }
 
 int main() {
-    char n[50], w;
-    int d;
-    float b, dis = 0;
+    char name[50], ward;
+    int days;
+    float beforeDiscount, discount = 0;
     
     printf("Enter Patient Name: ");
-    scanf("%s", n);
+    scanf("%s", name);
     printf("Enter Ward Type \n(General Ward-(G)/Semi-Private-(S)/Private-(P)): ");
-    scanf(" %c", &w);
-    w=toupper(w);
+    scanf(" %c", &ward);
+    ward=toupper(ward);
     printf("Enter Days: ");
-    scanf("%d", &d);
+    scanf("%d", &days);
     
-    b = calculate(w, d);
-    if(d > 7) dis = b * 0.05;
+    beforeDiscount = calculate(ward, days);
+    if(days > 7) discount = beforeDiscount * 0.05;
     
-    printf("\nPatient: %s\n", n);
-    printf("Before Discount: ₹%.0f\n", b);
-    printf("Discount: ₹%.0f\n", dis);
-    printf("Final: ₹%.0f\n", b - dis);
+    printf("\nPatient: %s\n", name);
+    printf("Before Discount: ₹%.0f\n", beforeDiscount);
+    printf("Discount: ₹%.0f\n", discount);
+    printf("Final: ₹%.0f\n", beforeDiscount - discount);
     return 0;
 }
