@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+long factorial(int n) {
+    if(n <= 1) return 1;
+    return n * fact(n-1);
+}
+
+int main() {
+    int x;
+    printf("Enter number: ");
+    scanf("%d", &x);
+    printf("Factorial of %d: %ld\n", x, factorial(x));
+    return 0;
+}
