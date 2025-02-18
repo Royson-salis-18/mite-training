@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+float calculate(char w, int d) {
+    int r;
+    if(w == 'G') r = 1000;
+    else if(w == 'S') r = 2000;
+    else if(w == 'P') r = 5000;
+    else r = 0;
+    return d * r;
+}
+
+int main() {
+    char n[50], w;
+    int d;
+    float b, dis = 0;
+    
+    printf("Enter Patient Name: ");
+    scanf("%s", n);
+    printf("Enter Ward Type \n(General Ward-(G)/Semi-Private-(S)/Private-(P)): ");
+    scanf(" %c", &w);
+    w=toupper(w);
+    printf("Enter Days: ");
+    scanf("%d", &d);
+    
+    b = calculate(w, d);
+    if(d > 7) dis = b * 0.05;
+    
+    printf("\nPatient: %s\n", n);
+    printf("Before Discount: ₹%.0f\n", b);
+    printf("Discount: ₹%.0f\n", dis);
+    printf("Final: ₹%.0f\n", b - dis);
+    return 0;
+}
