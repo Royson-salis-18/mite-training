@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 struct Student{
     char name[255];
     int marks;
@@ -19,11 +20,14 @@ void printStudents(Student_t* students, int length){
     }
 }
 int main(){
-    Student_t students[1000];
+    
     int studentsCount;
     printf("enter number of students:");
     scanf("%d",&studentsCount);
+    Student_t* students = (Student_t*)malloc(sizeof(Student_t)*studentsCount);
     readStudents(students,studentsCount);
     printStudents(students, studentsCount);
+    free(students);
+    students=NULL;
     return 0;
 }
